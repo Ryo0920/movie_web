@@ -1,0 +1,145 @@
+#hero{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /*スクロールを動かすため*/
+    position: relative;
+    /*スクロールを動かすため*/
+}
+
+.section{
+    padding: 50px 20px;
+}
+
+/*
+
+スクロールを動かす
+
+--------------------------*/
+
+.scroll{
+    position: absolute;
+    left: 50%;
+    bottom: 2vw;
+    height: 60px;
+}
+
+.scroll span{
+    position: absolute;
+    left: -19px;
+    top: -24px;
+}
+
+.scroll::after{
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 2px;
+    height: 40px;
+    background: black;
+    /*ここからアニメーション設定*/
+    animation: pathmove 1.5s ease-in-out infinite;
+    opacity: 0;
+}
+
+@keyframes pathmove{
+    0%{
+        height: 0;
+        top: 0;
+        opacity: 0;
+    }
+    30%{
+        height: 40px;
+        opacity: 1;
+    }
+    100%{
+        height: 0;
+        top: 60px;
+        opacity: 0;
+    }
+    
+}
+
+
+
+
+
+/*------------------------------
+
+セクションのアニメーション
+
+------------------------------*/
+
+.bgMove{
+    animation-name: bgMoveAnimation;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+
+    position: relative;
+    overflow: hidden;
+    opacity: 1;
+}
+
+@keyframes bgMoveAnimation{
+    from{
+        opacity: 1;
+    }
+    to{
+        opacity: 1;
+    }
+}
+
+.bgAppear{
+    animation-name: bgMoveAnimationSecond;
+    animation-duration: 0.5s;
+    animation-delay: 0.3s;
+    animation-fill-mode: forwards;
+    opacity: 0;
+}
+
+@keyframes bgMoveAnimationSecond{
+    0%{
+        opacity: 0;
+    }
+    10%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+.bgExtend::before{
+    animation-name: bgExtendAnimation;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+    content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-color: black;
+}
+
+@keyframes bgExtendAnimation{
+    0%{
+        transform-origin: left;
+        transform: scaleX(0);
+    }
+    50%{
+        transform-origin: left;
+        transform: scaleX(1);
+    }
+    50.001%{
+        transform-origin: right;
+    }
+    100%{
+        transform-origin: right;
+        transform: scaleX(0);
+    }
+}
+
+.bgTrigger{
+    opacity: 1;
+}
